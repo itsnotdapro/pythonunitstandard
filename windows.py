@@ -1,5 +1,6 @@
 import tkinter as tk
 import json
+from functools import partial
 from datetime import datetime
 
 class ApplicationWindow(tk.Frame):
@@ -88,7 +89,7 @@ class ApplicationWindow(tk.Frame):
     def open_delete_clients(self):
         now = datetime.now()
         delete = DeleteClient(self, now.day, now.month, now.year)
-        delete.geometry("200x700")
+        delete.geometry("200x400")
 
         delete.mainloop()
 
@@ -96,9 +97,11 @@ class DeleteClient(tk.Toplevel):
     def __init__(self, master, day, month, year):
         super().__init__(master)
 
-        self.frame = tk.Frame(self)
+        self.frame = tk.Frame(self, width=260, height=400)
         self.frame.pack()
-        canvas = tk.Canvas(self.frame)
+        canvas = tk.Canvas(self.frame, width=150, height=400)
+        canframe = tk.Frame(canvas)
+        canvas.create_window(0,0,window=canframe)
         scrollbar = tk.Scrollbar(self.frame)
         canvas.config(yscrollcommand = scrollbar.set)
         scrollbar.config(command=canvas.yview)
@@ -109,19 +112,23 @@ class DeleteClient(tk.Toplevel):
                 data = json.load(file)
                 current_date = "{}/{}/{}".format(day, month, year)
                 for client in data[current_date]:
-                    self.buttons[client + "name"] = tk.Label(canvas, text=client)
+                    self.buttons[client + "name"] = tk.Label(canframe, text=client, wraplengt=150)
                     self.buttons[client + "name"].pack()
-                    self.buttons[client + "address"] = tk.Label(canvas, text="Address: " + data[current_date][client]["address"])
+                    self.buttons[client + "address"] = tk.Label(canframe,
+                                                                text="Address: " + data[current_date][client]["address"],
+                                                                wraplengt=150)
                     self.buttons[client + "address"].pack()
-                    self.buttons[client] = tk.Button(canvas, text="Delete",
-                                                     command=lambda:self.delete_client(master,
+                    self.buttons[client] = tk.Button(canframe, text="Delete",
+                                                     command=partial(self.delete_client, master,
                                                                                        client,
                                                                                        data,
                                                                                        current_date))
                     self.buttons[client].pack()
                 scrollbar.pack(side="right", fill="y")
                 canvas.pack(side="left", expand=True, fill="both")
-        except KeyError: tk.Label(text="There are now clients on this day").pack()
+                self.update()
+                canvas.config(scrollregion=canvas.bbox("all"))
+        except KeyError: tk.Label(self.frame, text="There are no clients on this day").pack()
         
     def delete_client(self, master, client, data, date):
         del data[date][client]
