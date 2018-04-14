@@ -43,7 +43,7 @@ class ApplicationWindow(tk.Frame):
         self.mani_hours = self.create_time_inputs("Hours: ", 4, 1)
         self.mani_mins = self.create_time_inputs("Minutes: ", 4, 2)
 
-        self.add_client = tk.Button(text="Add Client", font=("Verdana", 12))
+        self.add_client = tk.Button(text="Add Client and Generate Invoice", font=("Verdana", 12))
         self.add_client.pack(pady=20)
 
         tk.Label(text="Today's Totals", font=("Verdana", 16, "bold")).pack()
@@ -164,3 +164,16 @@ class ClientList(tk.Toplevel):
             canvas.pack(side="left", expand=True, fill="both")
         except KeyError:
             tk.Label(frame, text="No Clients On This Day").pack()
+
+
+class Invoice(tk.Toplevel):
+    def __init__(self, master, client, address, drive, hair, mani, price):
+        super().__init__(master)
+
+        tk.Label(self, text="Name: " + client).pack(anchor="nw")
+        tk.Label(self, text="Address: " + address).pack(anchor="nw")
+        tk.Label(self, text="Driving Time: " + drive).pack(anchor="nw")
+        tk.Label(self, text="Haircutting Time: " + hair).pack(anchor="nw")
+        tk.Label(self, text="Manicuring Time: " + mani).pack(anchor="nw")
+        tk.Label(self, text="Cost: " + price).pack(anchor="nw")
+        

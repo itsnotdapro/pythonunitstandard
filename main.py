@@ -1,4 +1,4 @@
-from windows import ApplicationWindow, ClientList
+from windows import ApplicationWindow, ClientList, DeleteClient, Invoice
 import json
 from datetime import datetime
 from tkinter import Tk
@@ -34,7 +34,7 @@ class HairdressingApp(ApplicationWindow):
         try: type(data[date])
         except KeyError: return
         self.total_drive_time.config(text=str(self.get_totals()["drive"]) + " Minutes")
-        self.total_hair_time.config(text=str(self.get_totals()["hair"]) + " Minutes")
+        self.total_hair_time.config(text=str(self.get_to tals()["hair"]) + " Minutes")
         self.total_mani_time.config(text=str(self.get_totals()["mani"]) + " Minutes")
 
         self.total_drive_price.config(text="$" + str(float(self.get_totals()["drive"])*cost["drive"]))
@@ -65,6 +65,12 @@ class HairdressingApp(ApplicationWindow):
         with open("data.json") as file:
             data = json.load(file)
             self.set_totals(data, current_date)
+
+        invoice = Invoice(self, "name", "address", "drive", "hair", "mani", "price")
+        invoice.geometry("300x140")
+        invoice.mainloop()
+
+        
 
 
 
