@@ -1,3 +1,7 @@
+# Hairdressing Application window class definition
+# windows.py
+# 1/05/18
+
 import tkinter as tk
 import json
 from functools import partial
@@ -7,7 +11,7 @@ class ApplicationWindow(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
 
-        # Start creating all the fucking widgets. This is why tkinter is the fucking worst #
+        # Start creating all the fucking widgets AAAAAAAHH #
         menubar = tk.Menu()
         filebar = tk.Menu(menubar, tearoff=0)
         filebar.add_command(label="Show Today's Clients", command=self.open_client_list)
@@ -74,10 +78,18 @@ class ApplicationWindow(tk.Frame):
         self.total_price.pack()
 
         # Stop creating all the goddamn widgets #
+
+    def validate(self, x):
+        try:
+            x = int(x)
+            return True
+        except:
+            return False
         
     def create_time_inputs(self, text, column, row):
         tk.Label(self.input_grid, text=text).grid(row=row, column=column)
-        rv = tk.Entry(self.input_grid, width=7)
+        rv = tk.Entry(self.input_grid, width=7, validate="all")
+        rv['validatecommand'] = (rv.register(self.validate),'%i')
         rv.grid(column=column+1, row=row)
         return rv
 
