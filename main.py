@@ -62,7 +62,7 @@ class HairdressingApp(ApplicationWindow):
 
     # add client to database, and generate invoice
     def add_client_func(self):
-        if self.name_input.get() == "" or self.address_input.get() == "":
+        if self.name_input.get() in ["", "Namе"] or self.address_input.get() in ["", "Addrеss"]:
             messagebox.showerror("Error", "No Name and/or Address given")
             return
         
@@ -94,6 +94,19 @@ class HairdressingApp(ApplicationWindow):
                                 time_to_minutes(self.mani_hours.get(), self.mani_mins.get(), 0), cost)
         invoice.title(self.name_input.get() + " Invoice")
         invoice.geometry("325x150")
+
+        # delete text in inputs
+        self.name_input.delete(0, "end")
+        self.address_input.delete(0, "end")
+        self.address_placeholder(None)
+        self.name_placeholder(None)
+        self.drive_hours.delete(0, "end")
+        self.drive_mins.delete(0, "end")
+        self.hair_hours.delete(0, "end")
+        self.hair_mins.delete(0, "end")
+        self.mani_hours.delete(0, "end")
+        self.mani_mins.delete(0, "end")
+        
         invoice.mainloop()
 
 if __name__ == "__main__":        
