@@ -12,24 +12,29 @@ class ApplicationWindow(tk.Frame):
         super().__init__(master)
 
         # Start creating all the fucking widgets AAAAAAAHH #
+        
         menubar = tk.Menu()
         filebar = tk.Menu(menubar, tearoff=0)
         filebar.add_command(label="Show Today's Clients", command=self.open_client_list)
         filebar.add_command(label="Delete a Client", command=self.open_delete_clients)
 
         helpbar = tk.Menu(menubar, tearoff=0)
-        helpbar.add_command(label="How to Use")
+        helpbar.add_command(label="How to Use", command=self.help)
 
         menubar.add_cascade(label="File", menu=filebar)
         menubar.add_cascade(label="Help", menu=helpbar)
         master.config(menu=menubar)
 
-        tk.Label(text="Title", font=("Verdana", 20, "bold")).pack()
+        tk.Label(text="Hairdressing Application", font=("Verdana", 20, "bold")).pack()
 
-        self.name_input = tk.Entry()
+        self.name_input = tk.Entry(fg="#777777")
+        self.name_input.insert(0, "Namе")
+        self.name_input.bind("<FocusIn>", self.name_placeholder)
         self.name_input.pack()
 
-        self.address_input = tk.Entry()
+        self.address_input = tk.Entry(fg="#777777")
+        self.address_input.insert(0, "Addrеss")
+        self.address_input.bind("<FocusIn>", self.address_placeholder)
         self.address_input.pack()
 
         self.input_grid = tk.Frame()
@@ -37,7 +42,7 @@ class ApplicationWindow(tk.Frame):
 
         tk.Label(self.input_grid, text="Driving").grid(row=0, column=0, columnspan=2)
         tk.Label(self.input_grid, text="Haircutting").grid(row=0, column=2, columnspan=2)
-        tk.Label(self.input_grid, text="Mani").grid(row=0, column=4, columnspan=2)
+        tk.Label(self.input_grid, text="Manicuring").grid(row=0, column=4, columnspan=2)
 
         self.drive_hours = self.create_time_inputs("Hours: ", 0, 1)
         self.drive_mins = self.create_time_inputs("Minutes: ", 0, 2)
@@ -57,7 +62,7 @@ class ApplicationWindow(tk.Frame):
 
         tk.Label(total_grid, text="Driving", font=("Verdana", 11, "bold")).grid(row=0, column=0)
         tk.Label(total_grid, text="Haircutting", font=("Verdana", 11, "bold")).grid(row=0, column=1)
-        tk.Label(total_grid, text="Mani", font=("Verdana", 11, "bold")).grid(row=0, column=2)
+        tk.Label(total_grid, text="Manicuring", font=("Verdana", 11, "bold")).grid(row=0, column=2)
 
         self.total_drive_time = tk.Label(total_grid, text="0 Minutes")
         self.total_drive_time.grid(row=1, column=0, padx = 20)
@@ -79,17 +84,28 @@ class ApplicationWindow(tk.Frame):
 
         # Stop creating all the goddamn widgets #
 
-    def validate(self, x):
-        try:
-            x = int(x)
-            return True
+    def name_placeholder(self, event):
+        if self.name_input.get() == "Namе":
+            self.name_input.delete(0, "end")
+            self.name_input.config(fg="#000000")
+        
+
+    def address_placeholder(self, event):
+        if self.address_input.get() == "Addrеss":
+            self.address_input.delete(0, "end")
+            self.address_input.config(fg="#000000")
+
+    def validate(self, event):
+        try: x = int(event.char)
         except:
-            return False
+            if event.char == "": return # exception for backspace
+            if event.char == "	": return # exception for tab
+            return "break"
         
     def create_time_inputs(self, text, column, row):
         tk.Label(self.input_grid, text=text).grid(row=row, column=column)
         rv = tk.Entry(self.input_grid, width=7, validate="all")
-        rv['validatecommand'] = (rv.register(self.validate),'%i')
+        rv.bind("<Key>", self.validate)
         rv.grid(column=column+1, row=row)
         return rv
 
@@ -107,6 +123,25 @@ class ApplicationWindow(tk.Frame):
         delete.title("{}/{}/{} Clients".format(now.day, now.month, now.year))
         delete.geometry("260x400")
         delete.mainloop()
+
+    def help(self):
+        window = tk.Toplevel()
+        window.title("How To Use")
+        window.geometry("400x220")
+
+        tk.Label(window, text="Add A Client/Create an Invoice", font=("Verdana", "15", "bold")).pack()
+        tk.Label(window, text='''To add a new client, fill in all the text boxes
+(if a box taking a time is blank, it will default to 0)
+and click the "Add Client and Generate Invoice" button''').pack()
+
+        tk.Label(window, text="Delete A Client", font=("Verdana", "15", "bold")).pack()
+        tk.Label(window, text='''To delete a Client, go to File -> Delete A Client,
+and click "Delete" on the client you wish to remove''').pack()
+
+        tk.Label(window, text="View all Clients", font=("Verdana", "15", "bold")).pack()
+        tk.Label(window, text='''To view all of the current day's client, go to
+File -> Show Todays Clients''').pack()
+        window.mainloop()
 
 class DeleteClient(tk.Toplevel):
     def __init__(self, master, day, month, year):
@@ -173,7 +208,7 @@ class ClientList(tk.Toplevel):
                     self.data_list.insert("end", "Address: " + data[current_date][client]["address"])
                     self.data_list.insert("end", "Driving: " + str(data[current_date][client]["drive"]))
                     self.data_list.insert("end", "Haircutting: " + str(data[current_date][client]["hair"]))
-                    self.data_list.insert("end", "Mani: " + str(data[current_date][client]["mani"]))
+                    self.data_list.insert("end", "Manicuring: " + str(data[current_date][client]["mani"]))
                     self.data_list.insert("end", "")
             self.data_list.pack(side="left", fill="both")
             scrollbar.config(command=self.data_list.yview)

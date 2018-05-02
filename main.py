@@ -5,7 +5,7 @@
 from windows import ApplicationWindow, ClientList, DeleteClient, Invoice
 import json
 from datetime import datetime
-from tkinter import Tk
+from tkinter import Tk, messagebox
 
 # set costs of services, can be changed by editing these values
 cost = { "drive": 0.25,
@@ -28,7 +28,7 @@ class HairdressingApp(ApplicationWindow):
         with open('data.json') as file:
             data = json.load(file) # get data from json file, don't ask why it's json
             self.set_totals(data, "{}/{}/{}".format(now.day, now.month, now.year)) # set the totals text on lauch
-
+        
     # get all totals from inputs
     def get_totals(self):
         rv = {"drive": 0, "hair": 0, "mani": 0} #rv = return value
@@ -62,6 +62,10 @@ class HairdressingApp(ApplicationWindow):
 
     # add client to database, and generate invoice
     def add_client_func(self):
+        if self.name_input.get() == "" or self.address_input.get() == "":
+            messagebox.showerror("Error", "No Name and/or Address given")
+            return
+        
         with open('data.json') as file:
             now = datetime.now()
             new_data = {}
@@ -94,7 +98,7 @@ class HairdressingApp(ApplicationWindow):
 
 if __name__ == "__main__":        
     root = Tk()
-    root.geometry("400x600")
+    root.geometry("400x400")
     root.title("Hairdressing Application")
 
     app = HairdressingApp(root)
