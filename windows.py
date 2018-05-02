@@ -30,11 +30,13 @@ class ApplicationWindow(tk.Frame):
         self.name_input = tk.Entry(fg="#777777")
         self.name_input.insert(0, "Namе")
         self.name_input.bind("<FocusIn>", self.name_placeholder)
+        self.name_input.bind("<FocusOut>", self.name_placeholder)
         self.name_input.pack()
 
         self.address_input = tk.Entry(fg="#777777")
         self.address_input.insert(0, "Addrеss")
         self.address_input.bind("<FocusIn>", self.address_placeholder)
+        self.address_input.bind("<FocusOut>", self.address_placeholder)
         self.address_input.pack()
 
         self.input_grid = tk.Frame()
@@ -88,12 +90,19 @@ class ApplicationWindow(tk.Frame):
         if self.name_input.get() == "Namе":
             self.name_input.delete(0, "end")
             self.name_input.config(fg="#000000")
-        
+
+        elif self.name_input.get() == "":
+            self.name_input.insert(0, "Namе")
+            self.name_input.config(fg="#777777")
 
     def address_placeholder(self, event):
         if self.address_input.get() == "Addrеss":
             self.address_input.delete(0, "end")
             self.address_input.config(fg="#000000")
+
+        elif self.address_input.get() == "":
+            self.address_input.insert(0, "Addrеss")
+            self.address_input.config(fg="#777777")
 
     def validate(self, event):
         try: x = int(event.char)
