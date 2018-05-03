@@ -60,12 +60,16 @@ make the program simple for anybody to use, with clear buttons, entries and inst
 
 9/04/18
 *	Start planning. Start on flowchart, planning the logic that the program will utilize
+
 11/04/18
 *	Start programming. Begin building the GUI interface, creating all the buttons, widgets and labels that will be used
+
 15/04/18
 *	Start on logic. Make the program function by adding the ability to add/remove clients, and invoice generation
+
 2/05/18
 *	Meeting with Raymond Feng. Testing of program, and final adjustments based on testing
+
 4/05/18
 *	Final touches added, handed in. Finished
 	
