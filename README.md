@@ -1,4 +1,16 @@
-# Unit Standard US18741 Plan
+# Unit Standard US18741 
+
+## How to Use
+
+The program is under a shortcut with the name 'Hairdressing Application', and the source code is located in the folder 'source'
+
+To add a new client, fill in all the text boxes (if a box taking a time is blank, it will default to 0) and click the "Add Client and Generate Invoice" button
+
+To delete a Client, go to File -> Delete A Client, and click "Delete" on the client you wish to remove
+
+To view all of the current day's client, go to File -> Show Todays Clients
+
+# Plan
 
 ## Brief
 

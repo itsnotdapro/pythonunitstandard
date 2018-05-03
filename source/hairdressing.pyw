@@ -26,7 +26,7 @@ class HairdressingApp(ApplicationWindow):
         now = datetime.now()
         self.add_client.config(command=self.add_client_func) # set function of the set client button
         with open('data.json') as file:
-            data = json.load(file) # get data from json file, don't ask why it's json
+            data = json.load(file) # get data from json file
             self.set_totals(data, "{}/{}/{}".format(now.day, now.month, now.year)) # set the totals text on lauch
         
     # get all totals from inputs
