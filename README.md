@@ -39,8 +39,7 @@ make the program simple for anybody to use, with clear buttons, entries and inst
 		def __init__ - initialize window
 		
 ## Structure
-
-
+![alt text](/images/US18741 Logic - Page 1.png)
 	
 ## Testing
 
