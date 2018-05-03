@@ -53,14 +53,23 @@ Test | Expected Result | Actual Result | Pass/Fail |
 5) Client Fred, 0 Drive, 20 Hair, 0 Manicuring | Invoice for $30 | Invoice for $30 | Pass |
 6) Client Sue, 20 Drive, 20 Hair, A Manicuring | Don't allow A input | Don't allow A input | Pass |
 7) Change above to 10 Manicuring | Invoice for $42.50 | Invoice for $42.50 | Pass | 
-
+--- | --- | --- | --- |
 Test 2
+
 ![alt text](images/test1.png)
+
 Test 3
+
 ![alt text](images/test3.png)
+
 Test 4
+
 ![alt text](images/test2.png)
+
 Test 5
+
 ![alt text](images/test4.png)
+
 Test 7
+
 ![alt text](images/test5.png)
