@@ -1,6 +1,6 @@
 # Hairdressing Application logic and window function
 # main.py
-# 1/05/18
+# 4/05/18
 
 from windows import ApplicationWindow, ClientList, DeleteClient, Invoice
 import json

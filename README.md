@@ -53,6 +53,21 @@ make the program simple for anybody to use, with clear buttons, entries and inst
 ## Structure
 
 ![alt text](images/flowchart.png)
+
+# Program Analysis
+
+## Schedule
+
+9/04/18
+*	Start planning. Start on flowchart, planning the logic that the program will utilize
+11/04/18
+*	Start programming. Begin building the GUI interface, creating all the buttons, widgets and labels that will be used
+15/04/18
+*	Start on logic. Make the program function by adding the ability to add/remove clients, and invoice generation
+2/05/18
+*	Meeting with Raymond Feng. Testing of program, and final adjustments based on testing
+4/05/18
+*	Final touches added, handed in. Finished
 	
 ## Testing
 
@@ -85,3 +100,7 @@ Test 5
 Test 7
 
 ![alt text](images/test5.png)
+
+## Final Thoughts of Finished Program
+
+The program can preform all the functions that the brief requires, it can add, remove and generate invoices for clients with the cost being calculated by minute for each specific job.
