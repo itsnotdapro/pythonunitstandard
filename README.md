@@ -40,7 +40,7 @@ make the program simple for anybody to use, with clear buttons, entries and inst
 		
 ## Structure
 
-![alt text](images/US18741 Logic - Page 1.png)
+![alt text](images/flowchart.png)
 	
 ## Testing
 
