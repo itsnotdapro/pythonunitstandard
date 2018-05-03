@@ -54,6 +54,8 @@ Test | Expected Result | Actual Result | Pass/Fail |
 6) Client Sue, 20 Drive, 20 Hair, A Manicuring | Don't allow A input | Don't allow A input | Pass |
 7) Change above to 10 Manicuring | Invoice for $42.50 | Invoice for $42.50 | Pass | 
 --- | --- | --- | --- |
+
+
 Test 2
 
 ![alt text](images/test1.png)
