@@ -37,6 +37,10 @@ make the program simple for anybody to use, with clear buttons, entries and inst
 		def __init__ - initialize window
 	class Invoice - tk Toplevel for invoice windo
 		def __init__ - initialize window
+		
+## Structure
+
+
 	
 ## Testing
 
@@ -46,4 +50,7 @@ Type W in any time entry | Keystroke will fail to input | Keystroke failed to in
 Have name as 'Name', Address as '109 Main St, Blockhouse Bay, Auckland 0600' and all times as 1 minute| To add the client,  generate an invoice of 1 minute for driving, haircutting and manicuring, and have a total cost of $2.50| Added clientof name 'name', generated invoice of 1 minute for driving, haircutting and manicuring, and had a total cost of $2.50 | Pass |
 Same as above but 1 hour for each instead of 1 minute | Same as above but with 1 hour, and total cost of $150 | Same as above but with 1 hour, and total cost of $150 | Pass |
 Same as abouve but with blank address | Error message for not adding name/address | Error message for not adding name/address | Pass |
+Client Fred, 0 Drive, 20 Hair, 0 Manicuring | Invoice for $30 | Invoice for $30 | Pass |
+Client Sue, 20 Drive, 20 Hair, A Manicuring | Don't allow A input | Don't allow A input | Pass |
+Change above to 10 Manicuring | Invoice for $42.50 | Invoice for $42.50 | Pass | 
 
