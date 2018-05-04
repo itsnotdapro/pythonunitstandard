@@ -54,6 +54,17 @@ make the program simple for anybody to use, with clear buttons, entries and inst
 
 ![alt text](images/flowchart.png)
 
+### Desk Check
+
+When you enter name as 'Ray', address as '109 Main St', driving as 1 hour, 10 minutes, haircutting as 30 minutes, and manicuring as 10 minutes:
+
+*	You can only enter numbers into the time enrties, and name and address must be filled out otherwise an error will be thrown
+
+It will calculate the costs in minutes only using minute_time:
+*	To generate and invoice, update the totals and add the client to the database
+
+
+
 # Program Analysis
 
 ## Schedule
